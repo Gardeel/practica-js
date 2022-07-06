@@ -20,6 +20,7 @@ function buttonPriceDiscount(){
     const precioConDescuento = calcularPrecioConDescuento(priceValue, discountValue);
 
     const resultadoP = document.getElementById("ResultP"); 
+    // innerText manda texto desde Js a html
     resultadoP.innerText = `El precio con descuento son$ ${precioConDescuento}`;
 }
 
