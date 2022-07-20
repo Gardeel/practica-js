@@ -4,10 +4,24 @@ class Courses {
     name,
     classes =[],
     }){
-        this.name = name;
+        this._name = name;
         this.classes = classes;
     }
+
+    // creamos un get 
+    get name (){
+        return this._name;
+    }
+
+    set name (nuevoNombrecito){
+        if(nuevoNombrecito === "Curso Malito de Programacion Basica"){
+            console.error ("Web ... no");
+        }else{
+            this._name = nuevoNombrecito;
+        }
+    }
 }
+
 
 const cursoProgBasica = new Courses ({
     name: "Curso Gratis de Programacion Basica", 
