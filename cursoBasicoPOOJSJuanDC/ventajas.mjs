@@ -111,6 +111,13 @@ const escuelaVgs = new LearningPath ({
     ]
 });
 
+
+
+
+
+
+
+
 class Student {
     constructor({
         name,
@@ -135,6 +142,18 @@ class Student {
         this.learningPaths = learningPaths;
     }
 }
+
+class FreeStudent extends Student {}
+
+
+
+class BasicStudent extends Student {}
+
+
+
+class ExpertStudent extends Student {}
+
+
 
 const cris = new Student({
     name: "Cristian",

@@ -9,3 +9,10 @@ const clase66 =  new PlatziClass({
 clase66.reproducir();
 clase66.pausar();
 
+
+clase66.reproducir();
+clase66.pausar();
+
+
+clase66.reproducir();
+clase66.pausar();
