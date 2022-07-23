@@ -1,3 +1,25 @@
+class Comment {
+    constructor({
+        content,
+        studentName,
+        studentRole = "estudiante",
+    }){
+        this.content = content;
+        this.studentName = studentName;
+        this.studentRole = studentRole;
+        this.like = 0;
+    }
+    
+    publicar(){
+        console.log(this.studentName + " (" + this.studentRole + ")");
+        console.log(this.like + " likes");
+        console.log(this.content);
+    }
+}
+
+
+
+
 // por fuera de la clase vamos a crear dos funciones
 function videoPlay (id){
     const urlSecreta = "https://platzisecreta" + id ;
@@ -149,7 +171,17 @@ class Student {
         this.approvedCourses = approvedCourses;
         this.learningPaths = learningPaths;
     }
+
+    publicarComentario (commentContent){
+        const comment = new Comment({
+            content: commentContent,
+            studentName: this.name,
+        });
+        comment.publicar();
+    }
 }
+
+
 
 class FreeStudent extends Student {
     constructor(props){
@@ -191,6 +223,31 @@ class ExpertStudent extends Student {
     }
 }
 
+class TeacherStudent extends Student {
+    constructor(props){
+        super(props);
+    }
+
+    approveCourses(newCourses){
+        this.approvedCourses.push(newCourses)
+    }
+
+    publicarComentario (commentContent){
+        const comment = new Comment({
+            content: commentContent,
+            studentName: this.name,
+            studentRole: "Profesor"
+        });
+        comment.publicar();
+    }  
+}
+
+const freddy = new TeacherStudent({
+    name: "Freddy",
+    username: "Freddier",
+    email: "freddier@gmail.com",
+    instagram: "@freddier",
+});
 
 
 const cris = new FreeStudent({
