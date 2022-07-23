@@ -9,7 +9,7 @@ function videoStop (id){
     console.log(`Pausamos la url ${urlSecreta}`)
 }
 
-export class PlatziClass {
+class PlatziClass {
 
     constructor({
         name,
@@ -38,9 +38,15 @@ class Courses {
     constructor({
     name,
     classes =[],
+    isFree = false,
+    lang ="spanish"
+
     }){
         this._name = name;
         this.classes = classes;
+        this.isFree = isFree;
+        this.lang = lang;
+
     }
 
     // creamos un get 
@@ -61,6 +67,7 @@ class Courses {
 
 const cursoProgBasica = new Courses ({
     name: "Curso Gratis de Programacion Basica", 
+    isFree: true,
 });
 
 const cursoDefinitivoHTML = new Courses ({
@@ -69,6 +76,7 @@ const cursoDefinitivoHTML = new Courses ({
 
 const cursoPracticoHTML = new Courses ({
     name: "Curso Practico de HTML y CSS", 
+    lang: "english",
 });
 
 // Clases de los cursos
@@ -143,19 +151,49 @@ class Student {
     }
 }
 
-class FreeStudent extends Student {}
+class FreeStudent extends Student {
+    constructor(props){
+        super(props);
+    }
+
+    approveCourses(newCourses){
+        if(newCourses.isFree){
+            this.approvedCourses.push(newCourses)
+        }else{
+            console.warn(`lo siento ${this.name}, solo puedes tomar cursos gratis`);
+        }
+    }
+}
+
+
+class BasicStudent extends Student {
+    constructor(props){
+        super(props);
+    }
+
+    approveCourses(newCourses){
+        if(newCourses.lang !== "english"){
+            this.approvedCourses.push(newCourses)
+        }else{
+            console.warn(`lo siento ${this.name}, no puedes tomar cursos en english`);
+        }
+    }
+}
+
+
+class ExpertStudent extends Student {
+    constructor(props){
+        super(props);
+    }
+
+    approveCourses(newCourses){
+        this.approvedCourses.push(newCourses)
+    }
+}
 
 
 
-class BasicStudent extends Student {}
-
-
-
-class ExpertStudent extends Student {}
-
-
-
-const cris = new Student({
+const cris = new FreeStudent({
     name: "Cristian",
     username: "Gardel",
     email: "cdcalderonrojass@gmail.com",
@@ -166,7 +204,7 @@ const cris = new Student({
     ]
 });
 
-const miguel = new Student({
+const miguel = new BasicStudent({
     name: "Miguelito",
     username: "miguelitofeliz",
     email: "miguelito@juanito.com",
